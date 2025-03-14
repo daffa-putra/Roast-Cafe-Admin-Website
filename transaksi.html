@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        #content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+            }
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            #content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .toggle-btn {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background-color: #343a40;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="text-center mb-3">
+            <img src="assets/Logo.jpg" alt="Logo" class="img-fluid" style="max-width: 80px;">
+            <h2 class="fs-5">Roast</h2>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="dashboard.html" class="nav-link text-white">Dashboard</a></li>
+            <li class="nav-item"><a href="index.html" class="nav-link text-white">Pesanan</a></li>
+            <li class="nav-item"><a href="transaksi.html" class="nav-link text-white">Transaksi</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Konten utama -->
+    <div id="content">
+        <h2 class="text-center mb-4">📜 Transaksi</h2>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>No. Telepon</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="transaksiContainer">
+                    <tr>
+                        <td colspan="6" class="text-center">Memuat data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

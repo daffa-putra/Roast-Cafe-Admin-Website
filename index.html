@@ -2,116 +2,116 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Roast - Restoran & Kopi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesanan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        #content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            padding: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+            }
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            #content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .toggle-btn {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background-color: #343a40;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="Logo.jpg" alt="Roast Logo" height="40" width="auto"> Roast
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            Layanan
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Produk</a></li>
-                            <li><a class="dropdown-item" href="#">Jasa</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="text-center mb-3">
+            <img src="assets/Logo.jpg" alt="Logo" class="img-fluid" style="max-width: 80px;">
+            <h2 class="fs-5">Roast</h2>
         </div>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="dashboard.html" class="nav-link text-white">Dashboard</a></li>
+            <li class="nav-item"><a href="index.html" class="nav-link text-white">Pesanan</a></li>
+            <li class="nav-item"><a href="transaksi.html" class="nav-link text-white">Transaksi</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white">Logout</a></li>
+        </ul>
     </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="container text-center text-white">
-            <h1>Selamat Datang di Roast</h1>
-            <p>Nikmati makanan lezat & kopi terbaik</p>
-            <a href="#menu" class="btn btn-warning">Lihat Menu</a>
-        </div>
-    </header>
-
-    <!-- Menu Section -->
-    <section id="menu" class="container py-5">
-        <h2 class="text-center mb-4">Menu Favorit Kami</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="Minuman/Espresso.jpg" class="card-img-top" alt="Makanan">
-                    <div class="card-body">
-                        <h5 class="card-title">Makanan Lezat</h5>
-                        <p class="card-text">Rasakan berbagai hidangan spesial dari chef kami.</p>
-                    </div>
+    
+    <!-- Konten utama -->
+    <div id="content">
+        <h2 class="text-center mb-4">🛒 Pesanan</h2>
+        
+        <div class="row mt-3">
+            <!-- Bagian Menu -->
+            <div class="col-md-8">
+                <div class="text-center mb-3">
+                    <button class="btn btn-outline-primary" onclick="filterMenu('all')">Semua</button>
+                    <button class="btn btn-outline-primary" onclick="filterMenu('coffee')">Coffee</button>
+                    <button class="btn btn-outline-primary" onclick="filterMenu('non-coffee')">Non-Coffee</button>
+                </div>
+                <div id="menuContainer" class="row row-cols-2 row-cols-md-3 g-3">
+                    <!-- Menu akan dimasukkan oleh JavaScript -->
                 </div>
             </div>
+            
+            <!-- Bagian Pesanan -->
             <div class="col-md-4">
-                <div class="card">
-                    <img src="Makanan Berat/Chicken Curry.jpg" class="card-img-top" alt="Minuman">
-                    <div class="card-body">
-                        <h5 class="card-title">Minuman Segar</h5>
-                        <p class="card-text">Minuman dingin dan segar untuk menemani santapanmu.</p>
-                    </div>
+                <h3>Daftar Pesanan</h3>
+                <div id="pesananContainer" class="list-group">
+                    <!-- Pesanan akan ditampilkan di sini -->
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="Makanan Ringan/Cireng Bumbu Rujak.jpg" class="card-img-top" alt="Kopi">
-                    <div class="card-body">
-                        <h5 class="card-title">Kopi Premium</h5>
-                        <p class="card-text">Nikmati kopi premium dengan aroma khas terbaik.</p>
-                    </div>
+                <div class="mt-3 p-3 border rounded">
+                    <h5>Total: <span id="totalKeseluruhan">Rp 0</span></h5>
+                    <button id="checkoutButton" class="btn btn-success w-100 mt-2 d-none" onclick="tampilkanFormCheckout()">Checkout</button>
+                </div>
+                
+                <!-- Form Checkout -->
+                <div id="checkoutForm" class="mt-3 p-3 border rounded d-none">
+                    <h5>Data Pelanggan</h5>
+                    <input type="text" id="nama" class="form-control mb-2" placeholder="Nama">
+                    <input type="tel" id="telepon" class="form-control mb-2" placeholder="No. Telepon">
+                    <input type="number" id="jumlahUang" class="form-control mb-2" placeholder="Jumlah Uang">
+                    <button class="btn btn-primary w-100" onclick="pesan()">Pesan</button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="bg-light py-5">
-        <div class="container text-center">
-            <h2>Tentang Kami</h2>
-            <p>Roast adalah restoran yang menyajikan makanan lezat dan kopi berkualitas tinggi.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="container py-5">
-        <h2 class="text-center mb-4">Reservasi</h2>
-        <form>
-            <div class="mb-3">
-                <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Pesan</label>
-                <textarea class="form-control" id="message" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-dark">Kirim</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        &copy; 2025 Roast. All Rights Reserved.
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
