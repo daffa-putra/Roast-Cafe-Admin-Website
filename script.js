@@ -1,9 +1,24 @@
 const menuItems = [
-    { id: 1, name: "Espresso", category: "coffee", price: 20000, image: "assets/coffe.jpg" },
-    { id: 2, name: "Cappuccino", category: "coffee", price: 25000, image: "assets/coffe.jpg" },
-    { id: 3, name: "Latte", category: "coffee", price: 23000, image: "assets/coffe.jpg" },
-    { id: 4, name: "Green Tea", category: "non-coffee", price: 18000, image: "assets/coffe.jpg" },
-    { id: 5, name: "Lemon Tea", category: "non-coffee", price: 17000, image: "assets/coffe.jpg" }
+    { id: 1, name: "Affogato", category: "coffee", price: 20000, image: "assets/Minuman/Affogato.jpg" },
+    { id: 2, name: "Americano", category: "coffee", price: 25000, image: "assets/Minuman/Americano.jpg" },
+    { id: 3, name: "Caffe Latte", category: "coffee", price: 23000, image: "assets/Minuman/Cafe Latte.jpg" },
+    { id: 4, name: "Cappucino", category: "coffee", price: 18000, image: "assets/Minuman/Cappuccino.jpg" },
+    { id: 5, name: "Hazelnute Latte", category: "coffee", price: 17000, image: "assets/Minuman/Hazelnut Latte.jpg" },
+    { id: 6, name: "Es Jeruk Peras", category: "non-coffee", price: 17000, image: "assets/Minuman/Es Jeruk Peras.jpg" },
+    { id: 7, name: "Ice Tea", category: "non-coffee", price: 17000, image: "assets/Minuman/ice tea.jpg" },
+    { id: 8, name: "Jus Alpukat", category: "non-coffee", price: 17000, image: "assets/Minuman/Jus Alpukat.jpg" },
+    { id: 9, name: "Jus Mangga", category: "non-coffee", price: 17000, image: "assets/Minuman/Jus Mangga.jpg" },
+    { id: 10, name: "Lemon Tea", category: "non-coffee", price: 17000, image: "assets/Minuman/Lemon Tea.jpg" },
+    { id: 11, name: "Chicken Steak", category: "main-course", price: 17000, image: "assets/Makanan Berat/Chicken Steak with Blackpepper Sauce.jpg" },
+    { id: 12, name: "chicken", category: "main-course", price: 17000, image: "assets/Makanan Berat/chicken.jpg" },
+    { id: 13, name: "nasi goreng", category: "main-course", price: 17000, image: "assets/Makanan Berat/nasi goreng.jpg" },
+    { id: 14, name: "soto", category: "main-course", price: 17000, image: "assets/Makanan Berat/soto.jpg" },
+    { id: 15, name: "spageti", category: "main-course", price: 17000, image: "assets/Makanan Berat/spageti.jpg" },
+    { id: 16, name: "Cireng Bumbu Rujak", category: "snack", price: 17000, image: "assets/Makanan Ringan/Cireng Bumbu Rujak.jpg" },
+    { id: 17, name: "French Fries Saus Keju", category: "snack", price: 17000, image: "assets/Makanan Ringan/French Fries Saus Keju.jpg" },
+    { id: 18, name: "Onion Rings", category: "snack", price: 17000, image: "assets/Makanan Ringan/Onion Rings.jpg" },
+    { id: 19, name: "Roti Bakar Coklat Keju", category: "snack", price: 17000, image: "assets/Makanan Ringan/Roti Bakar Coklat Keju.jpg" },
+    { id: 20, name: "Tahu Crispy Pedas", category: "snack", price: 17000, image: "assets/Makanan Ringan/Tahu Crispy Pedas.jpg" }
 ];
 
 let pesanan = [];
@@ -20,16 +35,16 @@ function renderMenu(filter = "all") {
         .forEach(item => {
             const menuHTML = `
                 <div class="col">
-                    <div class="menu-item p-3 border rounded text-center">
-                        <img src="${item.image}" alt="${item.name}" class="img-fluid rounded">
-                        <h5 class="mt-2">${item.name}</h5>
-                        <p>Rp ${item.price}</p>
-                        <div class="d-flex justify-content-center">
-                            <input type="number" min="1" value="1" id="jumlah-${item.id}" class="form-control text-center w-50">
-                        </div>
-                        <button class="btn btn-primary btn-sm mt-2" onclick="tambahPesanan(${item.id})">Tambah</button>
-                    </div>
-                </div>
+        <div class="menu-item p-3 border rounded text-center">
+            <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="mt-2">${item.name}</h5>
+            <p>Rp ${item.price}</p>
+            <div class="d-flex justify-content-center">
+                <input type="number" min="1" value="1" id="jumlah-${item.id}" class="form-control text-center w-50">
+            </div>
+            <button class="btn btn-primary btn-sm mt-2" onclick="tambahPesanan(${item.id})">Tambah</button>
+        </div>
+    </div>
             `;
             container.innerHTML += menuHTML;
         });
