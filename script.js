@@ -31,11 +31,11 @@ function renderMenu(filter = "all") {
     container.innerHTML = "";
 
     menuItems
-        .filter(item => filter === "all" || item.category === filter) 
+        .filter(item => filter === "all" || item.category === filter)
         .forEach(item => {
             const menuHTML = `
                 <div class="col">
-        <div class="menu-item p-3 border rounded text-center">
+<div class="menu-item p-3 border border-start border-end border-dark rounded bg-white text-center">
             <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
             <h5 class="mt-2">${item.name}</h5>
             <p>Rp ${item.price}</p>
@@ -219,7 +219,7 @@ function selesaikanTransaksi(index) {
     renderTransaksi();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     renderTransaksi();
 });
 

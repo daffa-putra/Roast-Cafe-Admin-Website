@@ -8,11 +8,12 @@
     <style>
         body {
             display: flex;
+            background-color: #ffffff;
         }
         #sidebar {
             width: 250px;
-            background-color: #343a40;
-            color: white;
+            background-color: #1c2735;
+            color: rgb(255, 255, 255);
             height: 100vh;
             position: fixed;
             padding: 20px;
@@ -56,10 +57,10 @@
     
     <!-- Sidebar -->
     <nav id="sidebar">
-        <div class="text-center mb-3">
-            <img src="assets/Logo.jpg" alt="Logo" class="img-fluid" style="max-width: 80px;">
-            <h2 class="fs-5">Roast</h2>
-        </div>
+        <div class="d-flex align-items-center mb-3">
+            <img src="assets/LogoFix.png" alt="Logo" class="img-fluid me-2" style="max-width: 90px;">
+            <h2 class="fs-2 mb-0">Roast</h2>
+        </div>        
         <ul class="nav flex-column">
             <li class="nav-item"><a href="dashboard.html" class="nav-link text-white">Dashboard</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Pesanan</a></li>
@@ -75,13 +76,13 @@
         <!-- Statistik -->
         <div class="row text-center">
             <div class="col-md-6 mb-3">
-                <div class="p-4 bg-success text-white stat-card">
+                <div class="p-4 bg-dark text-white stat-card">
                     <h5 class="mt-2">Total Pembeli</h5>
                     <h3 id="totalPembeli">0</h3>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <div class="p-4 bg-primary text-white stat-card">
+                <div class="p-4 bg-dark text-white stat-card">
                     <h5 class="mt-2">Total Pendapatan</h5>
                     <h3 id="totalPendapatan">Rp 0</h3>
                 </div>
