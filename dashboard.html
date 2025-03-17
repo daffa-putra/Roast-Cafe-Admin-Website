@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             display: flex;
             background-color: #ffffff;
         }
+
         #sidebar {
             width: 250px;
             background-color: #1c2735;
@@ -19,25 +21,29 @@
             padding: 20px;
             transition: transform 0.3s ease-in-out;
         }
+
         #content {
             margin-left: 260px;
             width: calc(100% - 260px);
             padding: 20px;
         }
-        
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             #sidebar {
                 transform: translateX(-100%);
                 position: fixed;
             }
+
             #sidebar.active {
                 transform: translateX(0);
             }
+
             #content {
                 margin-left: 0;
                 width: 100%;
             }
+
             .toggle-btn {
                 position: absolute;
                 top: 20px;
@@ -52,23 +58,24 @@
         }
     </style>
 </head>
+
 <body>
     <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-    
+
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="d-flex align-items-center mb-3">
             <img src="assets/LogoFix.png" alt="Logo" class="img-fluid me-2" style="max-width: 90px;">
             <h2 class="fs-2 mb-0">Roast</h2>
-        </div>        
+        </div>
         <ul class="nav flex-column">
             <li class="nav-item"><a href="dashboard.html" class="nav-link text-white">Dashboard</a></li>
             <li class="nav-item"><a href="index.html" class="nav-link text-white">Pesanan</a></li>
             <li class="nav-item"><a href="transaksi.html" class="nav-link text-white">Transaksi</a></li>
-            <li class="nav-item"><a href="#" class="nav-link text-white">Logout</a></li>
+            <li class="nav-item"><a href="login.html" id="logoutBtn" class="nav-link text-white">Logout</a></li>
         </ul>
     </nav>
-    
+
     <!-- Konten utama -->
     <div id="content">
         <h2 class="text-center mb-4">📊 Dashboard</h2>
@@ -101,18 +108,20 @@
                     </tr>
                 </thead>
                 <tbody id="menuTerlaris">
-                    <tr><td colspan="3" class="text-center">Memuat data...</td></tr>
+                    <tr>
+                        <td colspan="3" class="text-center">Memuat data...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    
+    <script src="script.js"></script>
     <script>
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("active");
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const transaksi = JSON.parse(localStorage.getItem("transaksi")) || [];
             let totalPembeli = transaksi.length;
             let totalPendapatan = transaksi.reduce((sum, item) => sum + item.totalHarga, 0);
@@ -131,7 +140,7 @@
             let sortedMenu = Object.entries(menuCount).sort((a, b) => b[1] - a[1]);
             let menuTerlarisContainer = document.getElementById("menuTerlaris");
             menuTerlarisContainer.innerHTML = "";
-            
+
             sortedMenu.forEach(([name, jumlah], index) => {
                 menuTerlarisContainer.innerHTML += `
                     <tr>
@@ -142,6 +151,24 @@
                 `;
             });
         });
+
+        //Logika logout
+        document.addEventListener("DOMContentLoaded", function () {
+            const logoutLink = document.querySelector("a[href='login.html']");
+
+            if (logoutLink) {
+                logoutLink.addEventListener("click", function (event) {
+                    event.preventDefault(); // Mencegah tindakan default link
+                    const confirmLogout = confirm("Apakah Anda yakin ingin logout?");
+                    if (confirmLogout) {
+                        window.location.href = "login.html"; // Arahkan ke halaman login
+                    }
+                });
+            }
+        });
+
     </script>
+
 </body>
+
 </html>

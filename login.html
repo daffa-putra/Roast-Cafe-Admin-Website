@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-!
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, #a01010, #d6dae0);
+            padding: 20px;
         }
 
         .login-container {
@@ -39,16 +40,51 @@
         .form-control {
             border-radius: 8px;
         }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            .logo-container img {
+                max-width: 70px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-container {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .btn {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
-        <div class="d-flex align-items-center mb-3">
-            <img src="assets/Logo.jpg" alt="Logo" class="img-fluid me-5" style="max-width: 80px; height: auto;">
-            <h3 class="mb-0">Login</h3>
+        <div class="logo-container">
+            <img src="assets/Logo.jpg" alt="Logo" class="img-fluid">
         </div>
-               
+        <h3 class="mb-3">Login</h3>
+
         <form id="loginForm">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
