@@ -34,16 +34,16 @@ function renderMenu(filter = "all") {
         .filter(item => filter === "all" || item.category === filter)
         .forEach(item => {
             const menuHTML = `
-                <div class="col">
-<div class="menu-item p-3 border border-start border-end border-dark rounded bg-white text-center">
-            <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
-            <h5 class="mt-2">${item.name}</h5>
-            <p>Rp ${item.price}</p>
-            <div class="d-flex justify-content-center">
-                <input type="number" min="1" value="1" id="jumlah-${item.id}" class="form-control text-center w-50">
+            <div class="col">
+                <div class="menu-item p-3 border border-start border-end border-dark rounded bg-white text-center">
+                <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+                <h5 class="mt-2">${item.name}</h5>
+                <p>Rp ${item.price}</p>
+                <div class="d-flex justify-content-center">
+                    <input type="number" min="1" value="1" id="jumlah-${item.id}" class="form-control text-center w-50">
+                </div>
+                <button class="btn btn-primary btn-sm mt-2" onclick="tambahPesanan(${item.id})">Tambah</button>
             </div>
-            <button class="btn btn-primary btn-sm mt-2" onclick="tambahPesanan(${item.id})">Tambah</button>
-        </div>
     </div>
             `;
             container.innerHTML += menuHTML;
@@ -72,8 +72,8 @@ function tambahPesanan(id) {
 // Menampilkan daftar pesanan
 function renderPesanan() {
     const container = document.getElementById("pesananContainer");
-    container.innerHTML = "";
-    totalHarga = 0;
+    container.innerHTML = "" //mengosongkan data sebelum menampilkan dan agar data tidak ter dupliket 
+    totalHarga = 0; //mengatur ulang harga agar kembali 0 pada saat me render baru
 
     pesanan.forEach((item, index) => {
         const total = item.jumlah * item.price;
@@ -104,13 +104,34 @@ function renderPesanan() {
     }
 }
 
+// Menampilkan pesan menggunakan SweetAlert2
+function showAlert(icon, title, text) {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+        confirmButtonColor: "#3085d6",
+    });
+}
+
 // Menghapus pesanan dari daftar
 function hapusPesanan(index) {
-    const konfirmasi = confirm("Apakah Anda yakin ingin menghapus pesanan ini?");
-    if (konfirmasi) {
-        pesanan.splice(index, 1);
-        renderPesanan();
-    }
+    Swal.fire({
+        title: "Hapus Pesanan?",
+        text: "Apakah Anda yakin ingin menghapus pesanan ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            pesanan.splice(index, 1);
+            renderPesanan();
+            showAlert("success", "Berhasil!", "Pesanan berhasil dihapus.");
+        }
+    });
 }
 
 // Fungsi untuk menampilkan form checkout saat tombol checkout ditekan
