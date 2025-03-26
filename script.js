@@ -159,7 +159,13 @@ function pesan() {
 
     // Validasi apakah uang cukup
     if (jumlahUang < totalHarga) {
-        alert("Uang tidak cukup!");
+        Swal.fire({
+            title: "Uang Anda Tidak Cukup?",
+            text: "Harap sesuaikan harga dengan uang yang anda miliki?",
+            icon: "warning",
+            cancelButtonColor: "#3085d6",
+            cancelButtonText: "Batal",
+        });
         return;
     }
 
@@ -183,6 +189,7 @@ function pesan() {
     transaksi.push({
         id: Date.now(),
         nama,
+        name,
         telepon,
         totalHarga,
         status: "Proses",
@@ -218,11 +225,13 @@ function renderTransaksi() {
     }
 
     transaksi.forEach((t, index) => {
+        let daftarItem = t.pesanan.map(item => `${item.name} (${item.jumlah})`).join(", ");
         transaksiContainer.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${t.nama}</td>
                 <td>${t.telepon}</td>
+                <td>${daftarItem}
                 <td>Rp ${t.totalHarga}</td>
                 <td class="${t.status === 'Selesai' ? 'text-success' : 'text-warning'} fw-bold">${t.status}</td>
                 <td>
